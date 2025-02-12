@@ -1,0 +1,23 @@
+<p style="color: green"><%= notice %></p>
+<style>
+header {
+  text-align: center;
+}
+section {
+  background-color: lightgrey;
+  padding: 20px;
+  border: 5px solid;
+  border-radius: 5px;
+}
+</style>
+<header>
+<h1><%= @movie.title %></h1>
+<%= link_to "Edit this movie", edit_movie_path(@movie) %> |
+<%= link_to "Back to movies", movies_path %>
+<%= button_to "Destroy this movie", @movie, method: :delete %>
+</header>
+<section>
+  <p><strong>Rating:</strong> <%= @movie.rating %></p>
+  <p><strong>Release Date:</strong> <%= @movie.release_date %></p>
+  <p><strong>Description:</strong> <%= @movie.description %></p>
+</section>

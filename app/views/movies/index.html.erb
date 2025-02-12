@@ -1,0 +1,71 @@
+<p style="color: green"><%= notice %></p>
+<style>
+  header {
+    text-align: center;
+  }
+  table {
+    width: 100%;
+  }
+  th, td {
+    padding: 10px;
+    border: 1px solid;
+    text-align: center;
+  }
+  .asc-color {
+    background-color: green;
+  }
+  .desc-color {
+    background-color: red;
+  }
+</style>
+<% content_for :title, "Movies" %>
+<header>
+  <h1>Movies</h1>
+  <%= link_to "New movie", new_movie_path %>
+</header>
+<table>
+  <thead>
+    <tr>
+      <th class="<%= @order + '-color' if @sort == 'title' %>">
+        <%= link_to "Title", movies_path(sort: 'title', order: @sort == 'title' && @order == 'asc' ? 'desc' : 'asc') %>
+        <% if @sort == 'title' %>
+          <% if @order == 'asc' %>
+            ▲
+          <% else %>
+            ▼
+          <% end %>
+        <% end %>
+      </th>
+      <th class="<%= @order + '-color' if @sort == 'rating' %>">
+        <%= link_to "Rating", movies_path(sort: 'rating', order: @sort == 'rating' && @order == 'asc' ? 'desc' : 'asc') %>
+        <% if @sort == 'rating' %>
+          <% if @order == 'asc' %>
+            ▲
+          <% else %>
+            ▼
+          <% end %>
+        <% end %>
+      </th>
+      <th class="<%= @order + '-color' if @sort == 'release_date' %>">
+        <%= link_to "Release Date", movies_path(sort: 'release_date', order: @sort == 'release_date' && @order == 'asc' ? 'desc' : 'asc') %>
+        <% if @sort == 'release_date' %>
+          <% if @order == 'asc' %>
+            ▲
+          <% else %>
+            ▼
+          <% end %>
+        <% end %>
+      </th>
+    </tr>
+  </thead>
+  
+  <tbody>
+    <% @movies.each do |movie| %>
+      <tr>
+        <td><%= link_to movie.title, movie %></td>
+        <td><%= movie.rating %></td>
+        <td><%= movie.release_date %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
